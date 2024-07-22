@@ -14,11 +14,16 @@ public class User {
 
     private String username;
     private String gender;
-    private int age;
+    private Integer age;
     private LocalDateTime createdTimestamp;
 
-    public User(String username, String gender, int age) {
+    public User(String username, String gender, Integer age) {
         this.username = username;
+        this.gender = gender;
+        this.age = age;
+    }
+
+    public User(String gender, Integer age) {
         this.gender = gender;
         this.age = age;
     }
@@ -26,6 +31,7 @@ public class User {
     public User() {
 
     }
+
 
     @PrePersist
     protected void onCreate() {
@@ -45,7 +51,7 @@ public class User {
         return gender;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 

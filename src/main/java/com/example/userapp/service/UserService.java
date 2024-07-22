@@ -31,12 +31,17 @@ public class UserService {
 
     public User updateUser(Long id, User userDetails) {
         return userRepository.findById(id).map(user -> {
-            user.setUsername(userDetails.getUsername());
             user.setGender(userDetails.getGender());
-            user.setAge(userDetails.getAge());
+
+            // Update age (optional)
+            if (userDetails.getAge() != null) {
+                user.setAge(userDetails.getAge());
+            }
+
             return userRepository.save(user);
         }).orElseThrow(() -> new RuntimeException("User not found with id " + id));
     }
+
 
     public void deleteUser(Long id) {
         if (userRepository.existsById(id)) {
